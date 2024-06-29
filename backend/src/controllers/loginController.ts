@@ -21,13 +21,12 @@ const UserRequestReg = z.object({
 
 
 
-export const loginController = async (req: Request, res: Response<string>) => {
+export const loginController = async (req: Request, res: Response) => {
    try{
         
        const result = UserRequest.safeParse(req.body)
        if(!result.success){
-        const errorMessage = JSON.stringify({ msg: 'Invalid arguments', success: 'false' });
-        res.status(403).json(errorMessage);
+        res.status(403).json({ msg: 'Invalid arguments', success: 'false' });
        }
        else {
        const userData = result.data
@@ -47,29 +46,25 @@ export const loginController = async (req: Request, res: Response<string>) => {
     )
     if(user){
         const token = jwt.sign({...user}, process.env.JWT_SECRET! )
-        const Message = JSON.stringify({ msg: 'Logged', success: 'true', token: token });
-        res.status(200).json(Message);
+        res.status(200).json({ msg: 'Logged', success: 'true', user: user, token: token });
     }else{
-        const errorMessage = JSON.stringify({ msg: 'Invalid User', success: 'false' });
-        res.status(409).json(errorMessage);
+        res.status(401).json({ msg: 'Invalid User', success: 'false' });
     }
 
     }
     }
     catch(err){
-        const errorMessage = JSON.stringify({ msg: String(err), success: 'false' });
-        res.status(409).json(errorMessage);
+        res.status(409).json({ msg: String(err), success: 'false' });
     }
 
 }
 
-export const registerController = async (req: Request, res: Response<string>)=> {
+export const registerController = async (req: Request, res: Response)=> {
     try{
 
         const result= UserRequestReg.safeParse(req.body);
         if(!result.success){
-            const errorMessage = JSON.stringify({ msg: 'Invalid arguments', success: 'false' });
-            res.status(403).json(errorMessage);
+            res.status(403).json({ msg: 'Invalid arguments', success: 'false' });
         }
         else {
         const userData = result.data
@@ -88,9 +83,9 @@ export const registerController = async (req: Request, res: Response<string>)=> 
      )
 
      if(user){
-        const errorMessage = JSON.stringify({ msg: 'Already exiting user', success: 'false' });
-        res.status(409).json(errorMessage);
+                res.status(409).json({ msg: 'Already exiting user', success: 'false' });
      }
+
      else {
      const newUser = await prisma.users.create({
         data:{
@@ -107,14 +102,13 @@ export const registerController = async (req: Request, res: Response<string>)=> 
 
      const token = jwt.sign({newUser}, process.env.JWT_SECRET!)
      
-    const Message = JSON.stringify({ msg: 'Registered', success: 'true', token: token  });
-    res.status(200).json(Message);
+    res.status(200).json({ msg: 'Registered', success: 'true', user: newUser, token: token  });
      
     }
     }
      }
      catch(err){
-        const errorMessage = JSON.stringify({ msg: String(err), success: 'false' });
-        res.status(409).json(errorMessage);
+        console.log(err)
+        res.status(401).json({ msg: String(err), success: 'false' });
      }
 }

@@ -26,19 +26,44 @@ model users {
 model products {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String    @unique
-  modelPic String
-  modelId   String
+  modelPic String[]
+  modelId   String[]
   count    Int       @default(10)
   category String
+  isFeatured Boolean
   mapping  mapping[]
+  description String
+  rating      Float
+  price       Int 
+  reviews     reviews[]
+
 }
 
 model mapping {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  product    products @relation(fields: [productsId], references: [id])
-  user       users    @relation(fields: [usersId], references: [id])
-  productsId String   @db.ObjectId
-  usersId    String   @db.ObjectId
+  product    products @relation(fields: [productId], references: [id])
+  user       users    @relation(fields: [userId], references: [id])
+  productId  String   @db.ObjectId
+  userId     String   @db.ObjectId
+  count      Int 
 }
+
+
+
+model reviews {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId  String   @db.ObjectId
+  userId     String   @db.ObjectId
+  rating     Int      @default(0)
+  comment    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  product    products @relation(fields: [productId], references: [id])
+}
+
+
+
+
 
 

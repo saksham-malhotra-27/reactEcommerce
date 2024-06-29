@@ -1,32 +1,43 @@
-import './App.css'
-import { useGLTF } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import GLTF from 'three/examples/jsm/loaders/GLTFLoader';
-import THREE from "three"
 
-type GLTFResult = GLTF & {
-  nodes: Record<string, THREE.Object3D>;
-  materials: Record<string, THREE.Material>;
-};
-
-const GLBModel = ({ url }: { url: string }) => {
-  const { scene } = useGLTF(url) as GLTFResult;
-  return <primitive object={scene} />;
-};
-
+import Home from "./pages/Home"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import ProductMain from "./pages/productMain"
+import Shop from "./pages/Shop"
+import { Navigate, Outlet } from 'react-router-dom'
+import Cart from "./pages/Cart"
+import { useAuth } from "./context/auth"
+import Three from './pages/Three'
 function App() {
- 
   return (
-  <div style={{ width: '90vw', height: '100vh' }}>
-    <Canvas >
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <GLBModel  url="https://res.cloudinary.com/dxptcdxtr/image/upload/v1717339412/qpygjqsn5ktdd5tnaona.glb" />
-      <OrbitControls />
-    </Canvas>
-  </div>
+    <BrowserRouter >
+    <div className=" h-fit ">
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/product/:id" element={<ProductMain/>}/>
+        <Route path="/shop" element={<Shop/>}/>
+          <Route element={<PrivateRoutes/>}>
+          <Route path="/cart" element={<Cart/>}/>
+        </Route>
+        <Route path="/three" element={<Three/>}/>
+      </Routes>
+    </div>
+    </BrowserRouter>
   )
 }
+
+
+const PrivateRoutes = () => {
+  const [auth, , loading] = useAuth();
+  //console.log("Auth state in PrivateRoutes:", auth); // Debugging line
+
+  if (loading) {
+    return <div className="items-center justify-center top-1/2 left-1/2 ">Loading...</div>;
+  }
+
+  return (
+    auth.token !== '' ? <Outlet /> : <Navigate to='/' />
+  )
+}
+
 
 export default App
