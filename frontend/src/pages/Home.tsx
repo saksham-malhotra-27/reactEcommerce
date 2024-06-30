@@ -181,7 +181,7 @@ function Home() {
               Did I imagine it ?
             </h2>
             <h3 className='text-xl text-center lg:text-left'>
-              Reaady for a fun ride ? Set your mind aside and fix on shopping instead 
+              Ready for a fun ride ? Set your mind aside and fix on shopping instead 
             </h3>
           </div>
           
@@ -198,7 +198,7 @@ function Home() {
              Overkilling it !!
             </h2>
             <h3 className='text-xl  lg:text-left font-light '>
-            The blend in the world with us, it seems nice.  
+              Blend yourself with the destined creativity of your performance, to outcast the WORLD ! 
             </h3>
           </div>
           </div>

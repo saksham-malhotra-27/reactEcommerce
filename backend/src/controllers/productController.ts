@@ -40,7 +40,7 @@ const UserRequestReg = z.object({
 export const createProduct = async (req: Request, res: Response) => {
     try {
       const result = UserRequestReg.safeParse(req.body);
-      console.log(req.body)
+     // console.log(req.body)
   
       if (!result.success) {
         return res.status(400).json({ msg: 'Invalid arguments', success: false });
@@ -128,7 +128,7 @@ export  const createProductFromCSV = async (req: Request, res: Response) => {
               },
             });
   
-            console.log(`Product created: ${product.name}`);
+       //     console.log(`Product created: ${product.name}`);
           }
   
           res.status(201).json({ msg: 'Products created successfully', success: true });
@@ -240,9 +240,7 @@ export const getFilters = async (req: Request, res: Response) =>{
         where:whereClause
     });
 
-    data.map((d)=>{
-      console.log(d.isFeatured)
-    })
+   
     
     res.status(200).json({success:true, data:data})
 

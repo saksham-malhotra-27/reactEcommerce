@@ -7,7 +7,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 export const getImage = async (req: Request, res: Response) => {
 
     const prompt = "An abstract design with black and white boxes";
-    console.log('hi')
+   // console.log('hi')
 
     try {
       const response = await model.generateContent(prompt); 
