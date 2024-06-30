@@ -22,10 +22,10 @@ function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [auth, setAuth] = useAuth();
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [tops, setTops] = useState<Product[]>([]);
+  const [skirts, setSkirts] = useState<Product[]>([])
   const Navigate = useNavigate()
-  const item2Products: Product[] = [/* ...existing products... */];
-  const item3Products: Product[] = [/* ...existing products... */];
-
+ 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
@@ -40,6 +40,37 @@ function Home() {
         console.error('Error fetching featured products:', error);
       }
     };
+
+    const fetchTops = async ()=>{
+      try {
+        const response = await fetch('http://localhost:5000/api/v1/products/getcat/tops');
+        const data = await response.json();
+        if(data.success){
+        setTops(data.data);}
+        else{
+          console.error('Error fetching featured products');
+        }
+      } catch (error) {
+        console.error('Error fetching featured products:', error);
+      }
+    }
+
+    const fetchskirts = async ()=>{
+      try {
+        const response = await fetch('http://localhost:5000/api/v1/products/getcat/skirts');
+        const data = await response.json();
+        if(data.success){
+        setSkirts(data.data);}
+        else{
+          console.error('Error fetching featured products');
+        }
+      } catch (error) {
+        console.error('Error fetching featured products:', error);
+      }
+    }
+
+    fetchTops() 
+    fetchskirts()
 
     fetchFeaturedProducts();
   }, []);
@@ -115,21 +146,25 @@ function Home() {
         </div>
 
         <div className='flex flex-col p-5 items-center justify-center gap-5 w-full'>
-          <h1 className='sm:text-4xl text-xl font-bold text-left w-fit'>Items2 Products</h1>
+          <h1 className='sm:text-4xl text-xl font-bold text-left w-fit'>Tops</h1>
           <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center'>
-            {renderProducts(item2Products)}
+            {renderProducts(tops)}
           </div>
-          <button className="mt-8 rounded-full bg-slate-900 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button onClick={(e)=>{
+            Navigate('/shop?category=tops')
+          }}  className="mt-8 rounded-full bg-slate-900 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             View All
           </button>
         </div>
 
         <div className='flex flex-col p-5 items-center justify-center gap-5 w-full'>
-          <h1 className='sm:text-4xl text-xl font-bold text-left w-fit'>Items3 Products</h1>
+          <h1 className='sm:text-4xl text-xl font-bold text-left w-fit'>Skirts</h1>
           <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center'>
-            {renderProducts(item3Products)}
+            {renderProducts(skirts)}
           </div>
-          <button className="mt-8 rounded-full bg-slate-900 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button onClick={(e)=>{
+            Navigate('/shop?category=skirts')
+          }}  className="mt-8 rounded-full bg-slate-900 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             View All
           </button>
         </div>

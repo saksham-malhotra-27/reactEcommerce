@@ -122,10 +122,16 @@ function Cart() {
                 Delete
               </button>
               </div>
-              
+                          
             </div>
           ))}
         </div>
+        <button
+               onClick={(e)=>{e.preventDefault(); navigate('/buy')}} 
+                className='ml-4 p-2 font-semibold hover:bg-black bg-[#141414] text-white rounded'
+              >
+                Continue ...
+              </button>
       </div>
     </Layout>
   );

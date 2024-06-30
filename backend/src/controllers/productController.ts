@@ -220,20 +220,30 @@ export const getFilters = async (req: Request, res: Response) =>{
     const category = req.query.category ? req.query.category as string : undefined;
     const isFeatured = req.query.isFeatured ? (req.query.isFeatured === 'true'? true: false ): undefined;
 
-    const whereClause = {
+    let whereClause;
+    if(isFeatured){
+    whereClause = {
         rating: {gte: rating},
         price: { lte: price},
         category: category,
-        isFeatured : isFeatured || false
-    }
+        isFeatured : isFeatured 
+    }}
+    else{
+      whereClause = {
+        rating: {gte: rating},
+        price: { lte: price},
+        category: category,
+    }}
+    
 
     const data = await prisma.products.findMany({
         where:whereClause
     });
 
-    data.map((product)=>{
-      console.log(product.isFeatured)
+    data.map((d)=>{
+      console.log(d.isFeatured)
     })
+    
     res.status(200).json({success:true, data:data})
 
    }

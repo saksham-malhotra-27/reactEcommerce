@@ -7,6 +7,8 @@ import { Navigate, Outlet } from 'react-router-dom'
 import Cart from "./pages/Cart"
 import { useAuth } from "./context/auth"
 import Three from './pages/Three'
+import Buy from "./pages/Buy"
+import SignUp from "./pages/Signup"
 function App() {
   return (
     <BrowserRouter >
@@ -17,6 +19,10 @@ function App() {
         <Route path="/shop" element={<Shop/>}/>
           <Route element={<PrivateRoutes/>}>
           <Route path="/cart" element={<Cart/>}/>
+          <Route path='/buy' element={<Buy/>}/>
+        </Route>
+        <Route element={<PublicRoutes/>}>
+          <Route path = '/signup' element={<SignUp/>}/>
         </Route>
         <Route path="/three" element={<Three/>}/>
       </Routes>
@@ -41,3 +47,14 @@ const PrivateRoutes = () => {
 
 
 export default App
+
+
+const PublicRoutes = ()=>{
+  const [auth, , loading] = useAuth();
+  if(loading){
+    return <div className="items-center justify-center top-1/2 left-1/2 ">Loading...</div>;
+  }
+  return (
+    auth.token === ''? <Outlet/> : <Navigate to='/'/>
+  )
+}
