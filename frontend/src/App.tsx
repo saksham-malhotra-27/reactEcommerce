@@ -24,7 +24,6 @@ function App() {
         <Route element={<PublicRoutes/>}>
           <Route path = '/signup' element={<SignUp/>}/>
         </Route>
-        <Route path="/three" element={<Three/>}/>
       </Routes>
     </div>
     </BrowserRouter>

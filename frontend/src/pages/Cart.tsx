@@ -3,6 +3,7 @@ import Layout from '../components/Layout.tsx/Layout';
 import { useAuth } from '../context/auth';
 import capitalize from '../utils/capitalize';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../components/BaseUrl';
 
 function Cart() {
   const [auth] = useAuth();
@@ -12,7 +13,7 @@ function Cart() {
   useEffect(() => {
     async function fetching() {
       const id = auth.user?.id;
-      const ans = await fetch(`http://localhost:5000/api/v1/cart/${String(id)}`, {
+      const ans = await fetch(`${BASE_URL}/api/v1/cart/${String(id)}`, {
         headers: {
           authorization: String(auth.token)
         }
@@ -26,7 +27,7 @@ function Cart() {
   }, []);
 
   const handleCountChange = async (productId: string, count: string) => {
-    const res = await fetch('http://localhost:5000/api/v1/cart/change', {
+    const res = await fetch(`${BASE_URL}/api/v1/cart/change`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ function Cart() {
     if (res.ok) {
       // Refresh the cart data after the update
       const id = auth.user?.id;
-      const ans = await fetch(`http://localhost:5000/api/v1/cart/${String(id)}`, {
+      const ans = await fetch(`${BASE_URL}/api/v1/cart/${String(id)}`, {
         headers: {
           authorization: String(auth.token)
         }
@@ -53,7 +54,7 @@ function Cart() {
   };
 
   const handleDelete = async (productId: string, count: number) => {
-    const res = await fetch('http://localhost:5000/api/v1/cart/remove', {
+    const res = await fetch(`${BASE_URL}/api/v1/cart/remove`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ function Cart() {
     if (res.ok) {
       // Refresh the cart data after the deletion
       const id = auth.user?.id;
-      const ans = await fetch(`http://localhost:5000/api/v1/cart/${String(id)}`, {
+      const ans = await fetch(`${BASE_URL}/api/v1/cart/${String(id)}`, {
         headers: {
           authorization: String(auth.token)
         }

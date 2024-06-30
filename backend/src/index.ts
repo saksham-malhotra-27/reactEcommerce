@@ -7,19 +7,15 @@ import productRouterUser from "./routes/productRoutes.js"
 import imageRoute from "./routes/imageRoute.js"
 import cloudinary from "cloudinary"
 import { isSignedIn } from "./middlewares/auth.js";
-cloudinary.v2.config({
-    cloud_name: 'dxptcdxtr',
-    api_key: '783749438291583',
-    api_secret: 'r1zLyeAhSSKrjNU3aexuNRfBBu0',
-})
+
 
 const app = express()
-const port = process.env.PORT || 3000;
+const port = process.env.PORT ;
 
 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: `${process.env.ORIGIN}`,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
 }));

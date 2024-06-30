@@ -4,6 +4,7 @@ import Card from '../components/oneCard';
 import { VelocityScroll } from '../components/scroll-based-velocity';
 import { useAuth } from '../context/auth';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../components/BaseUrl';
 
 interface Product {
   id:string
@@ -29,7 +30,7 @@ function Home() {
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/v1/products/getfeat');
+        const response = await fetch(`${BASE_URL}/api/v1/products/getfeat`);
         const data = await response.json();
         if(data.success){
         setFeaturedProducts(data.data);}
@@ -43,7 +44,7 @@ function Home() {
 
     const fetchTops = async ()=>{
       try {
-        const response = await fetch('http://localhost:5000/api/v1/products/getcat/tops');
+        const response = await fetch(`${BASE_URL}/api/v1/products/getcat/tops`);
         const data = await response.json();
         if(data.success){
         setTops(data.data);}
@@ -57,7 +58,7 @@ function Home() {
 
     const fetchskirts = async ()=>{
       try {
-        const response = await fetch('http://localhost:5000/api/v1/products/getcat/skirts');
+        const response = await fetch(`${BASE_URL}/api/v1/products/getcat/skirts`);
         const data = await response.json();
         if(data.success){
         setSkirts(data.data);}
@@ -171,17 +172,16 @@ function Home() {
 
         <div className='bg-[#141414] text-white justify-around items-center rounded-lg h-fit flex lg:flex-row flex-col lg:m-10 lg:p-10 gap-2 p-2'>
           <h1 className='font-bold text-5xl lg:w-1/3 text-center lg:text-left w-full order-1 lg:order-1'>
-            Look Sharp And Stay Comfy With This Varsity Jacket
+            We don't just sell we Trigify
           </h1>
-          <img src='https://wtflex.in/cdn/shop/files/DII2_600x600.png?v=1685026287'
+          <img src='https://rukminim2.flixcart.com/image/832/832/xif0q/top/z/z/b/l-cl-wm-t0105-addyvero-original-imagymmuyth4zahb.jpeg?q=70&crop=false'
            alt='' className='w-1/2 lg:w-1/4 rounded-md m-4 order-2 lg:order-3' />
           <div className='flex flex-col lg:w-1/3 md:w-1/2 text-center lg:text-left w-full order-3 lg:order-2'>
             <h2 className='font-bold text-3xl'>
               Did I imagine it ?
             </h2>
             <h3 className='text-xl text-center lg:text-left'>
-              The double-layered fabric featuring cotton blend with inner lining keeps you warm and snug all day long. 
-              High-density 3D puff print adds a stylish flair to the classic black color, making it perfect for both men and women.
+              Reaady for a fun ride ? Set your mind aside and fix on shopping instead 
             </h3>
           </div>
           
@@ -189,17 +189,16 @@ function Home() {
 
           <div className=' p-2 text-black justify-around  rounded-lg h-fit flex lg:flex-row flex-col lg:m-10 lg:p-10 gap-2'>
           <div className=' h-96 overflow-hidden lg:w-1/4 rounded-md w-full object-contain '>
-            <img src='https://wtflex.in/cdn/shop/files/352178397_639174921565413_5550562391282319855_n.jpg?v=1701341086&width=1070'
+            <img src='https://m.media-amazon.com/images/I/71w16GmYwEL._SY879_.jpg'
              alt='' className='' />
           </div>
           
           <div className='flex justify-center items-center flex-col lg:w-1/2 w-full  lg:text-left '>
             <h2 className='font-bold text-center text-3xl'>
-              Did I imagine it ?
+             Overkilling it !!
             </h2>
             <h3 className='text-xl  lg:text-left font-light '>
-              The double-layered fabric featuring cotton blend with inner lining keeps you warm and snug all day long. 
-              High-density 3D puff print adds a stylish flair to the classic black color, making it perfect for both men and women.
+            The blend in the world with us, it seems nice.  
             </h3>
           </div>
           </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+/*import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
@@ -52,7 +52,7 @@ const GLB = ({ id, width, height }: GLBProps) => {
       <Canvas>
         <ambientLight intensity={1} />
         <pointLight position={[0, 0, 0]} />
-        {url && <GLBModel url={url} position={[0, 0, 3]} />} {/* You can set any position here */}
+        {url && <GLBModel url={url} position={[0, 0, 3]} />} {/* You can set any position here }
         <OrbitControls />
       </Canvas>
     </div>
@@ -60,3 +60,4 @@ const GLB = ({ id, width, height }: GLBProps) => {
 };
 
 export default GLB;
+*/

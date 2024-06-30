@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout.tsx/Layout';
 import Card from '../components/oneCard';
+import { BASE_URL } from '../components/BaseUrl';
 
 // Define types for the filter state and the product
 interface Filters {
@@ -108,7 +109,7 @@ const Shop: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/v1/products/getallcat');
+      const response = await fetch(`${BASE_URL}/api/v1/products/getallcat`);
       const data = await response.json();
       setCategories(data.data || []); // Set categories state with fetched data or empty array
     } catch (error) {
@@ -125,7 +126,7 @@ const Shop: React.FC = () => {
       );
 
       const queryParams = new URLSearchParams(filteredParams as any).toString();
-      const url = `http://localhost:5000/api/v1/products/filters${queryParams ? `?${queryParams}` : ''}`;
+      const url = `${BASE_URL}/api/v1/products/filters${queryParams ? `?${queryParams}` : ''}`;
       console.log(url)
       
       const response = await fetch(url);

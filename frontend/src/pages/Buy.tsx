@@ -3,6 +3,7 @@ import Layout from '../components/Layout.tsx/Layout'
 import { useAuth } from '../context/auth'
 import Cart from './Cart'
 import capitalize from '../utils/capitalize'
+import { BASE_URL } from '../components/BaseUrl'
 function Buy() {
     const [auth,] = useAuth()
     const [paymentMethod, setPaymentMethod] = useState('')
@@ -21,7 +22,7 @@ function Buy() {
     useEffect(() => {
         async function fetching() {
           const id = auth.user?.id;
-          const ans = await fetch(`http://localhost:5000/api/v1/cart/${String(id)}`, {
+          const ans = await fetch(`${BASE_URL}/api/v1/cart/${String(id)}`, {
             headers: {
               authorization: String(auth.token)
             }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/auth';
 import Layout from '../components/Layout.tsx/Layout';
 import { useNavigate } from 'react-router-dom';
-
+import { BASE_URL } from '../components/BaseUrl';
 interface SignUpModalProps {
   onClose: () => void;
   switchToSignIn: () => void;
@@ -27,7 +27,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ onClose, switchToSignIn }) =>
       formData.append('location', location);
       formData.append('role', String(role));
 
-      const response = await fetch('http://localhost:5000/api/v1/register', {
+      const response = await fetch(`${BASE_URL}/api/v1/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -149,7 +149,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ onClose, switchToSignUp }) =>
       formData.append('email', email);
       formData.append('password', password);
 
-      const response = await fetch('http://localhost:5000/api/v1/login', {
+      const response = await fetch(`${BASE_URL}/api/v1/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

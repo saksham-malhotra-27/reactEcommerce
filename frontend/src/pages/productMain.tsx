@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../components/Layout.tsx/Layout';
 import { useAuth } from '../context/auth';
+import { BASE_URL } from '../components/BaseUrl';
 
 interface Props {
   id: string;
@@ -28,7 +29,7 @@ const ProductMain = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/v1/products/get/${id}`);
+        const response = await fetch(`${BASE_URL}/api/v1/products/get/${id}`);
         const data = await response.json();
         if (data.success) {
           setProduct(data.data[0]);
@@ -57,7 +58,7 @@ const ProductMain = () => {
       return;
     }
     try {
-      const res = await fetch('http://localhost:5000/api/v1/cart/add', {
+      const res = await fetch(`${BASE_URL}/api/v1/cart/add`, {
         method: 'POST', // Specify the HTTP method
         headers: {
           'Content-Type': 'application/json', // Indicate that the body contains JSON data
