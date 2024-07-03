@@ -1,3 +1,23 @@
+## Initialization
+Initialize the project by :
++ Clone using
+  ```
+  https://github.com/saksham-malhotra-27/reactEcommerce.git
+  ```
++ Then go to backend directory and install dependencies
+  ```
+  cd backend
+  npm i
+  ```
++ Then go to frontend directory and install dependencies
+  ```
+  cd frontend
+  npm i
+  ```
++ Then finally go to each one of backend and frontend and use :
+  `
+  npm run dev
+  `
 ## What it is ?
 The project uses simple methods just of frontend development as well as backend development to implement a Ecommerce website, with type validations.
 ## Tech stack used
