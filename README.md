@@ -1,9 +1,10 @@
 # Trigify
 
-<video width="320" height="240" controls>
-  <source src="https://github-production-user-asset-6210df.s3.amazonaws.com/147790402/345620057-1f5f5066-ebb7-4e58-960b-677c7a092a94.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240703%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240703T205611Z&X-Amz-Expires=300&X-Amz-Signature=d59a4a95435ee1404757af7d5b43c07b8159082f7852acc3ceea4bc4d76a7de0&X-Amz-SignedHeaders=host&actor_id=147790402&key_id=0&repo_id=815152873" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![image](https://github.com/user-attachments/assets/f8c171e0-a385-47dc-87da-21480b77a2b4)
+![image](https://github.com/user-attachments/assets/1693d8b3-5e49-43fb-8137-bce308d215dc)
+![image](https://github.com/user-attachments/assets/68054c99-7cd8-49a0-a0b3-c199eb21bf42)
+![image](https://github.com/user-attachments/assets/cc660947-ec7f-4013-b577-c78255a89c6f)
+![image](https://github.com/user-attachments/assets/d85cf8e1-664d-476e-b529-d5299b14dc7f)
 
 ## Initialization
 Initialize the project by :
