@@ -16,8 +16,10 @@
   "dependencies": {
     "@google/generative-ai": "^0.14.0",
     "@prisma/client": "^5.14.0",
+    "@types/axios": "^0.14.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/multer": "^1.4.11",
+    "axios": "^1.7.5",
     "cloudinary": "^2.2.0",
     "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
