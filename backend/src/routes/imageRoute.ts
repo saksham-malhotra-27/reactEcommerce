@@ -132,4 +132,5 @@ const downloadImages = async (imageUrls: string[]): Promise<string[]> => {
   return downloadedImages;
 };
 
+
 export { generateImage };

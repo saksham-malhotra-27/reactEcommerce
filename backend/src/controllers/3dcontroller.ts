@@ -28,6 +28,7 @@ try{
             quantity: threeDObj.data.quantity
         }
     })
+    console.log(savethreedobj)
     return res.status(200).json({success:true, msg:"Saved to cart"})
 }
 catch(err){

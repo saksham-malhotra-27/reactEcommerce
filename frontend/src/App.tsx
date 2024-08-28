@@ -18,7 +18,7 @@ function App() {
         <Route path="/product/:id" element={<ProductMain/>}/>
         <Route path="/shop" element={<Shop/>}/>
         <Route element={<PrivateRoutes/>}>
-          <Route element={<Three/>} path="/gen"/>
+          <Route  path="/gen" element={<Three/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path='/buy' element={<Buy/>}/>
         </Route>

@@ -10,7 +10,7 @@ import { isSignedIn } from "./middlewares/auth.js";
 import dotenv from 'dotenv'
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+import threeRouters from './routes/3droutes.js'
 dotenv.config();
 
 const app = express()
@@ -38,6 +38,7 @@ app.use('/api/v1', AuthRouter);
 app.use('/api/v1', productRouter)
 app.use('/api/v1', productRouterUser)
 app.use('/api/v1/', isSignedIn, cartRouter)
+app.use('/api/v1/', threeRouters)
 app.post('/api/v1/generate', isSignedIn, generateImage);
 
 
