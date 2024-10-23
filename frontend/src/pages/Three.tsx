@@ -14,20 +14,17 @@ const ModelViewer: React.FC<ModelViewerProps> = ({ modelUrl, textureUrl }) => {
   const { scene } = useGLTF(modelUrl);
   const texture = useLoader(TextureLoader, textureUrl || '');
 
-  // Apply texture to all mesh objects in the scene
   scene.traverse((child) => {
     if ((child as any).isMesh) {
       (child as any).material.map = texture;
     }
   });
 
-  // State for transformations based on the model
   const [scale, setScale] = useState<number>(1);
   const [position, setPosition] = useState<Vector3>(new Vector3(0, 0, 0));
   const [rotation, setRotation] = useState<Euler>(new Euler(0, 0, 0));
 
   useEffect(() => {
-    // Define custom properties for different models
     switch(modelUrl) {
       case '/glbs/combo.glb':
         setScale(2);
@@ -121,9 +118,9 @@ const App: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: selectedModel, // Use the model name as the name
-          picURL: image,       // The generated image URL
-          quantity: quantity,  // The quantity entered by the user
+          name: selectedModel, 
+          picURL: image,       
+          quantity: quantity, 
         }),
       });
 

@@ -254,3 +254,56 @@ export const getFilters = async (req: Request, res: Response) =>{
 
 
 
+/**
+1. Create Product
+
+-- Insert a new product into the `products` table
+INSERT INTO products (name, count, description, category, modelPic, rating, price, isFeatured) 
+VALUES ('<data.name>', <data.count>, '<data.description>', '<data.category>', ARRAY['<data.file1>', '<data.file2>'], <data.rating>, <data.price>, <data.isFeatured>);
+
+-----------------------
+
+2. Create Product From CSV
+
+-- For each row in the CSV file, insert a new product into the `products` table
+INSERT INTO products (name, count, category, description, modelPic, rating, price, isFeatured) 
+VALUES ('<row.name>', <row.count>, '<row.category>', '<row.description>', ARRAY['<row.file1>', '<row.file2>'], <row.rating>, <row.price>, <row.isFeatured>);
+
+-----------------------
+
+3. Get Featured Products
+
+-- Retrieve all products where `isFeatured` is true
+SELECT * FROM products WHERE isFeatured = TRUE;
+
+-----------------------
+
+4. Get Products By Category
+
+-- Retrieve all products where `category` matches the given category
+SELECT * FROM products WHERE category = '<cat>';
+
+-----------------------
+
+5. Get All Unique Categories
+
+-- Retrieve all unique categories from the `products` table
+SELECT DISTINCT category FROM products;
+
+-----------------------
+
+6. Get Product By ID
+
+-- Retrieve the product with the given `id`
+SELECT * FROM products WHERE id = '<id>';
+
+-----------------------
+
+7. Get Products By Filters (Rating, Price, Category, and IsFeatured)
+
+-- Retrieve products filtered by rating, price, category, and isFeatured
+SELECT * FROM products 
+WHERE rating >= <rating> AND price <= <price> AND category = '<category>' AND (isFeatured = <isFeatured> OR isFeatured IS NULL);
+
+-----------------------------------------
+*/

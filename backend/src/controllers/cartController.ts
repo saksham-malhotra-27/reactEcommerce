@@ -1,6 +1,26 @@
 import { Request, Response } from 'express';
 import prisma from '../db/prisma.js';  // Adjust the path according to your project structure
 
+
+
+
+
+/** 
+1. Add to Cart
+-- Check if the user-product mapping exists
+SELECT * FROM mapping 
+WHERE userId = '<userId>' AND productId = '<productId>';
+
+-- If exists and stock is sufficient, update the count
+UPDATE mapping 
+SET count = count + <parsedCount> 
+WHERE id = '<existingMapping.id>';
+
+-- If not exists, insert a new row in mapping
+INSERT INTO mapping (userId, productId, count) 
+VALUES ('<userId>', '<productId>', <parsedCount>);
+ */
+
 export const addToCart = async (req: Request, res: Response) => {
     try {
         const { userId, productId, count } = req.body;
@@ -41,6 +61,26 @@ export const addToCart = async (req: Request, res: Response) => {
     }
 };
 
+
+/**
+ * 
+ 2. Remove from Cart
+-- Check if the user-product mapping exists
+SELECT * FROM mapping 
+WHERE userId = '<userId>' AND productId = '<productId>';
+
+-- If count is greater than the parsedCount, decrease the count
+UPDATE mapping 
+SET count = count - <parsedCount> 
+WHERE id = '<existingMapping.id>';
+
+-- If count is less than or equal to parsedCount, delete the mapping
+DELETE FROM mapping 
+WHERE id = '<existingMapping.id>';
+ * 
+ */
+
+
 export const removeFromCart = async (req: Request, res: Response) => {
     try {
         const { userId, productId, count } = req.body;
@@ -78,6 +118,25 @@ export const removeFromCart = async (req: Request, res: Response) => {
 };
 
 
+/** 
+ * 
+ * 
+ 3. Change Cart Item Count
+-- Check if the user-product mapping exists
+SELECT * FROM mapping 
+WHERE userId = '<userId>' AND productId = '<productId>';
+
+-- If exists, update the count
+UPDATE mapping 
+SET count = <parsedCount> 
+WHERE id = '<existingMapping.id>';
+
+-- If not exists, insert a new row in mapping
+INSERT INTO mapping (userId, productId, count) 
+VALUES ('<userId>', '<productId>', <parsedCount>);
+ * 
+ */
+
 export const change = async (req: Request, res: Response) => {
     try {
         const { userId, productId, count } = req.body;
@@ -114,6 +173,19 @@ export const change = async (req: Request, res: Response) => {
     }
 };
 
+
+
+/**  
+ * 
+ *4 .Fetch all products in the user's cart
+SELECT * FROM mapping 
+JOIN product ON mapping.productId = product.id 
+WHERE userId = '<userId>';
+ * 
+ */
+
+
+
 export const getCart = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params;
@@ -128,5 +200,4 @@ export const getCart = async (req: Request, res: Response) => {
         res.status(500).json({ success: false, message: String(err) });
     }
 };
-
 

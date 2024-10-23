@@ -112,3 +112,31 @@ export const registerController = async (req: Request, res: Response)=> {
         res.status(401).json({ msg: String(err), success: 'false' });
      }
 }
+
+/**
+
+1. Login Controller
+
+-- Check if a user with the given email and password exists 
+SELECT id, email, location, role, phone 
+FROM users 
+WHERE email = '<userData.email>' AND password = '<userData.password>';
+
+
+2. Register Controller
+
+-- Check if the user already exists by email 
+SELECT id, email, location, role, phone 
+FROM users 
+WHERE email = '<userData.email>';
+
+-- If the user does not exist, insert a new user into the table 
+INSERT INTO users (email, password, phone, role, location) 
+VALUES ('<userData.email>', '<userData.password>', '<userData.phone>', '<userData.role>', '<userData.location>');
+
+-- Select the newly created user 
+SELECT id, email, location, role, phone 
+FROM users 
+WHERE email = '<userData.email>';
+
+*/
